@@ -19,6 +19,16 @@ function cmd_asm(){
 			i=$[i+1]
 		done
 		case $(echo $command | tr "[:upper:]" "[:lower:]") in
+			"section" )
+				command="SECTION";;
+			"global" )
+				command="GLOBAL";;
+			"push" )
+				command="PUSH";;
+			"pop" )
+				command="POP";;
+			"int" )
+				command="INT";;
 			"jmp" )
 				command="JMP";;
 			"je" )
