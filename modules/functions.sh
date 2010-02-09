@@ -36,7 +36,7 @@ function privmsg(){
 
 function notice(){
 	# NOTICE who :what
-	raw "NOTICE $1 :2"
+	raw "NOTICE $1 :$2"
 }
 
 function recv(){
