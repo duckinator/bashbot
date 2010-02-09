@@ -21,3 +21,10 @@ function cmd_test(){
 	privmsg "$RECIP" "IT LIVES!"
 }
 
+function cmd_uptime(){
+	privmsg "$RECIP" "$SENDER_NICK: $(uptime)"
+}
+
+function cmd_uname(){
+	privmsg "$RECIP" "$SENDER_NICK: $(uname -a)"
+}
