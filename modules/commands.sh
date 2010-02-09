@@ -8,7 +8,7 @@ function cmd_join(){
 
 function cmd_load(){
 	MOD_NAME=$1
-	MOD_LOCATION="./$(echo $MOD_NAME | sed 's/\///g' | sed 's/\\//g').sh"
+	MOD_LOCATION="./modules/$(echo $MOD_NAME | sed 's/\///g' | sed 's/\\//g').sh"
 	if [ -f $MOD_LOCATION ]; then
 		source $MOD_LOCATION
 		privmsg "$RECIP" "$SENDER_NICK: Loaded module $MOD_NAME"
@@ -20,3 +20,4 @@ function cmd_load(){
 function cmd_test(){
 	privmsg "$RECIP" "IT LIVES!"
 }
+
