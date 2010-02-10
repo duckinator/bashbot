@@ -16,3 +16,4 @@ function cmd_google_suggest(){
 function cmd_gsuggest(){
   cmd_google_suggest $@
 }
+
