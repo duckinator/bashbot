@@ -39,6 +39,11 @@ function notice(){
 	raw "NOTICE $1 :$2"
 }
 
+function ctcp(){
+	# PRIVMSG who :\001<type> <params>
+	notice $1 "$(echo -e '\001')$(echo $2 | tr '[:lower:]' '[:upper:]') ${@:3}$(echo -e '\001')"
+}
+
 function recv(){
 	while true; do
 		read RECV<&3
@@ -63,6 +68,23 @@ function recv(){
 		MESSAGE=${MESSAGE#* }
 	done
 	MESSAGE=${MESSAGE#:*}
+	if [ "$TYPE" == "PRIVMSG" ]; then
+		if [ "${MESSAGE:0:1}" == "$(echo -e '\001')" ]; then
+			if [ "${MESSAGE:(-1):1}" == "$(echo -e '\001')" ]; then
+				MESSAGE=${MESSAGE:1:$((${#MESSAGE}-2))}
+				if [[ $MESSAGE =~ ' ' ]]; then
+					pos=$((`expr index "$MESSAGE" ' '`-1)) # Position of first space, minus one so we don't /include/ that space
+					CTCP_TYPE=${MESSAGE:0:$pos}
+					CTCP_PARAM=${MESSAGE#* }
+				else
+					CTCP_TYPE=$MESSAGE
+					CTCP_PARAM=
+				fi
+				onctcp
+				continue;
+			fi
+		fi
+	fi
 	COMMAND=($(echo $MESSAGE | awk -F"^$NICK[:,]? * *" '{print $2}'))
 	COMMAND_PARAM="$MESSAGE"
 	for ((i=0; i<2; i++)); do
@@ -75,7 +97,6 @@ function recv(){
 }
 
 function onrecv(){
-
 	# PING/PONG
 	if [ "$SENDER" == "PING" ]; then
 		raw "PONG $(echo $RECV | awk -F"PING " '{print $2}')"
@@ -93,3 +114,13 @@ function onrecv(){
 
 }
 
+function onctcp(){
+	case "$CTCP_TYPE" in
+	"VERSION")
+		ctcp "$SENDER_NICK" "VERSION" "BashBot $VERSION running on $(uname --operating-system) [$(uname --machine --processor)]"
+		;;
+	"PING")
+		ctcp "$SENDER_NICK" "PING" "$CTCP_PARAM"
+		;;
+	esac
+}
