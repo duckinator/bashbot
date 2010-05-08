@@ -34,6 +34,10 @@ function privmsg(){
 	raw "PRIVMSG $1 :$2"
 }
 
+function reply(){
+	raw "$TYPE $RECIP :$@"
+}
+
 function notice(){
 	# NOTICE who :what
 	raw "NOTICE $1 :$2"

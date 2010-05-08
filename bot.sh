@@ -1,8 +1,8 @@
 #!/bin/bash
 
-INIT_CHANNELS="#bots"
+INIT_CHANNELS="#programming"
 NICK="BashBot"
-SERVER="irc.eighthbit.net/6667"
+SERVER="irc.sinsira.net/6667"
 
 source ./modules/functions.sh
 source ./modules/commands.sh
