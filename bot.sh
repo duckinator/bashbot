@@ -10,8 +10,6 @@ source ./modules/google.sh
 
 socket $SERVER
 init $NICK "$NICK 0 0 :BashBot v$VERSION by duckinator as $NICK"
-join $INIT_CHANNELS
-
 
 while true; do
 	recv
