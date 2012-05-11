@@ -91,7 +91,7 @@ function recv(){
     elif [ "$TYPE" == "001" ]; then
         join $INIT_CHANNELS
     fi
-    COMMAND=($(echo $MESSAGE | awk -F"^$NICK[:,]? * *" '{print $2}'))
+    COMMAND=($(echo $MESSAGE | awk -F"^$NICK[:, ] ?* *" '{print $2}'))
     COMMAND_PARAM="$MESSAGE"
     for ((i=0; i<2; i++)); do
         COMMAND_PARAM=${COMMAND_PARAM#* }
