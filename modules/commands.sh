@@ -30,6 +30,6 @@ function cmd_uname(){
 }
 
 function cmd_source(){
-    reply "My source is available on github at http://github.com/RockerMONO/bashbot"
+    reply "My source is available on github at http://github.com/duckinator/bashbot"
 }
 
