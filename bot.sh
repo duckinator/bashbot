@@ -2,7 +2,7 @@
 
 INIT_CHANNELS="#programming"
 NICK="BashBot"
-SERVER="onyx.ninthbit.net/6667"
+SERVER="onyx.tenthbit.net/6667"
 
 source ./modules/functions.sh
 source ./modules/commands.sh
