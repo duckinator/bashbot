@@ -7,8 +7,8 @@ function cmd_join(){
 }
 
 function cmd_load(){
-    MOD_NAME=$1
-    MOD_LOCATION="./modules/$(echo $MOD_NAME | sed 's/\///g' | sed 's/\\//g').sh"
+    MOD_NAME="$(basename $1)"
+    MOD_LOCATION="./modules/${MOD_NAME}.sh"
     if [ -f $MOD_LOCATION ]; then
         source $MOD_LOCATION
         reply "$SENDER_NICK: Loaded module $MOD_NAME"
