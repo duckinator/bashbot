@@ -1,7 +1,7 @@
 #!/bin/bash
 
 INIT_CHANNELS="##eleventhbit"
-NICK="BashBot"
+NICK="BashBot-$RANDOM"
 SERVER="irc.freenode.net/6667"
 
 source ./modules/functions.sh
